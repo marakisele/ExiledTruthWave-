@@ -5,27 +5,22 @@
   <title>Weiterleitung…</title>
 
   <script>
-    // Klick-Zähler (ohne Cookies)
-    let clicks = localStorage.getItem("natureheart_clicks");
+    // getrenntes Tracking (ohne Cookies)
+    let key = "nh_click_instagram";
+    let clicks = localStorage.getItem(key);
     clicks = clicks ? parseInt(clicks) + 1 : 1;
-    localStorage.setItem("natureheart_clicks", clicks);
+    localStorage.setItem(key, clicks);
 
-    console.log("Affiliate-Klicks:", clicks);
-
-    // Weiterleitung zu deinem Affiliate-Link
-    window.location.replace("https://nature-heart.de/reinheit");
+    // DEIN Affiliate-Link
+    window.location.replace(
+      "https://nature-heart.de/reinheit"
+    );
   </script>
 </head>
 
 <body>
   <p>Du wirst weitergeleitet…</p>
-
-  <p>
-    <a href="https://nature-heart.de/reinheit">
-      Falls nichts passiert, hier klicken
-    </a>
-  </p>
-
   <p><small>* Affiliate-Link</small></p>
 </body>
 </html>
+
