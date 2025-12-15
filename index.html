@@ -8,7 +8,7 @@
     :root {
       --bg: #EFD8A9;
       --text: #6A9369;
-      --card-bg: rgba(237, 174, 234, 0.6); /* EDAEA */
+      --card-bg: rgba(237, 174, 234, 0.6);
       --accent: #6A9369;
     }
     body {
@@ -89,6 +89,49 @@
       line-height: 1.3;
     }
   </style>
+
+  <!-- Automatisches Affiliate-Tracking -->
+  <script>
+    // Funktion zum anonymen Tracking ohne Cookies
+    function trackEvent(eventType, data = {}) {
+      const url = "https://your-tracking-endpoint.com/track"; // Deinen Endpoint einsetzen
+      const payload = {
+        event: eventType,
+        timestamp: new Date().toISOString(),
+        page: window.location.href,
+        ...data
+      };
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(err => console.log("Tracking Error:", err));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Alle Links auf der Seite prüfen
+      const allLinks = document.querySelectorAll("a");
+      allLinks.forEach(link => {
+        // Affiliate-Links erkennen: intern oder extern
+        if (link.href.includes("Affiliate-link.html") || link.href.includes("nature-heart.de")) {
+          link.addEventListener("click", e => {
+            e.preventDefault();
+            const targetUrl = link.href;
+            const affiliateId = link.getAttribute("data-affiliate-id") || "auto";
+
+            // Klick tracken
+            trackEvent("affiliate_click", { affiliateId, target: targetUrl });
+
+            // Seite nach kurzem Timeout öffnen
+            setTimeout(() => {
+              window.location.href = targetUrl;
+            }, 100);
+          });
+        }
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="container">
@@ -98,12 +141,12 @@
     <h1>ExiledTruthWave☦️</h1>
     <p id="bio">Affiliate Links • Elegant • Minimalistisch • Trackerfrei</p>
 
+    <!-- Beispiel-Links -->
     <a class="link" href="https://deine-website.de">🌐 Meine Website</a>
-    <a class="link" href="go/nh-instagram.html">
-  💼 Partner 1 – Jetzt ansehen
-</a>
-
-    <a class="link" href="mailto:email@domain.de">📩 Kontakt</<>
+    <a class="link" href="go/nh-instagram.html">💼 Partner 1 – Jetzt ansehen</a>
+    <a class="link" href="Affiliate-link.html" target="_blank">📌 Mein Affiliate-Link</a>
+    <a class="link" href="https://www.nature-heart.de/?ref=deinAffiliateID" target="_blank">🌿 Nature Heart</a>
+    <a class="link" href="mailto:email@domain.de">📩 Kontakt</a>
 
     <footer>
       *Die hier verlinkten Produkte sind Affiliate-Links.<br>
@@ -124,7 +167,8 @@
       if(newUrl) document.getElementById('profileImage').src = newUrl;
     }
 
-    document.getElementById('bio'o.).addEventListener('dblclic, , changeBi;
+    // Doppelklick auf Bio zum Ändern
+    document.getElementById('bio').addEventListener('dblclick', changeBio);
   </script>
 </body>
 </html>
