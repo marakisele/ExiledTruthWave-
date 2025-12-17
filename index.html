@@ -1,178 +1,174 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ExiledTruthWave☦️ – Affiliate Links</title>
-  <style>
-    :root {
-      --bg: #EFD8A9;
-      --text: #6A9369;
-      --card-bg: rgba(237, 174, 234, 0.6);
-      --accent: #6A9369;
-    }
-    body {
-      margin: 0;
-      font-family: "Inter", Arial, sans-serif;
-      background: linear-gradient(160deg, #EFD8A9, #EDAEA);
-      color: var(--text);
-      display: flex;
-      justify-content: center;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-    }
-    .container {
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
-    }
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin: 0 auto 1rem;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      cursor: pointer;
-      border: 3px solid var(--accent);
-    }
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    #bio {
-      margin-top: 0;
-      margin-bottom: 2rem;
-      color: var(--text);
-      font-size: 1rem;
-    }
-    .link {
-      display: block;
-      margin: 1rem auto;
-      padding: 1rem 1.5rem;
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      color: var(--text);
-      text-decoration: none;
-      border-radius: 16px;
-      border: 1px solid rgba(0,0,0,0.08);
-      width: 100%;
-      font-size: 1.1rem;
-      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.6s forwards;
-    }
-    .link:nth-child(1) { animation-delay: 0.1s; }
-    .link:nth-child(2) { animation-delay: 0.2s; }
-    .link:nth-child(3) { animation-delay: 0.3s; }
-    .link:nth-child(4) { animation-delay: 0.4s; }
-    .link:hover {
-      transform: translateY(-5px) scale(1.04);
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    footer {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: var(--text);
-      line-height: 1.3;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExiledTruthWave☦️ – Nature Heart Mini-Shop</title>
 
-  <!-- Automatisches Affiliate-Tracking -->
-  <script>
-    // Funktion zum anonymen Tracking ohne Cookies
-    function trackEvent(eventType, data = {}) {
-      const url = "https://your-tracking-endpoint.com/track"; // Deinen Endpoint einsetzen
-      const payload = {
-        event: eventType,
-        timestamp: new Date().toISOString(),
-        page: window.location.href,
-        ...data
-      };
-      fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        keepalive: true
-      }).catch(err => console.log("Tracking Error:", err));
-    }
+<style>
+:root {
+  --bg: #f7f2e7;
+  --text: #6A9369;
+  --card-bg: rgba(255,255,255,0.95);
+  --accent: #6A9369;
+  --hover-bg: rgba(255,255,255,1);
+}
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  background: linear-gradient(160deg, #EFD8A9, #EDAEA);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+.container {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+header {
+  position: sticky;
+  top: 0;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  padding: 1rem 0;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+header .avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 0.5rem;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+header .avatar:hover { transform: scale(1.05); }
+header .avatar img { width: 100%; height: 100%; object-fit: cover; }
+header h1 { margin: 0.3rem 0 0; font-size: 1.6rem; color: var(--accent);}
+header #bio { font-size: 0.9rem; color: var(--text); margin: 0.2rem 0;}
 
-    document.addEventListener("DOMContentLoaded", () => {
-      // Alle Links auf der Seite prüfen
-      const allLinks = document.querySelectorAll("a");
-      allLinks.forEach(link => {
-        // Affiliate-Links erkennen: intern oder extern
-        if (link.href.includes("Affiliate-link.html") || link.href.includes("nature-heart.de")) {
-          link.addEventListener("click", e => {
-            e.preventDefault();
-            const targetUrl = link.href;
-            const affiliateId = link.getAttribute("data-affiliate-id") || "auto";
+.profile-input {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.profile-input input {
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  width: 60%;
+}
+.profile-input button {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.profile-input button:hover { background: #557b56; }
 
-            // Klick tracken
-            trackEvent("affiliate_click", { affiliateId, target: targetUrl });
+.affiliate-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.affiliate-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.25);}
+.affiliate-card img { width: 100%; border-radius: 14px; margin-bottom: 1rem; }
+.affiliate-card h2 { margin: 0.5rem 0; font-size: 1.3rem; color: var(--accent);}
+.affiliate-card p { font-size: 0.9rem; margin-bottom: 0.8rem; color:#555; }
 
-            // Seite nach kurzem Timeout öffnen
-            setTimeout(() => {
-              window.location.href = targetUrl;
-            }, 100);
-          });
-        }
-      });
-    });
-  </script>
+.coupon { background: rgba(255,255,255,0.9); border-radius: 12px; padding: 0.6rem; margin-bottom: 0.8rem;}
+.coupon .code { display: inline-block; padding:0.4rem 0.8rem; font-weight:bold; letter-spacing:1.5px; background: var(--accent); color:#fff; border-radius:8px; cursor:pointer;}
+.coupon .hint { font-size:0.75rem; color:#555; margin-top:0.2rem; }
+
+.affiliate-card a.btn {
+  display:inline-block;
+  padding:0.9rem 1.2rem;
+  background: var(--accent);
+  color:#fff;
+  text-decoration:none;
+  border-radius:14px;
+  font-size:1.05rem;
+  width:100%;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.affiliate-card a.btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:0 12px 25px rgba(0,0,0,0.25);
+  background:#557b56;
+}
+
+footer { margin:2rem 1rem; font-size:0.8rem; color:var(--text); line-height:1.3; text-align:center;}
+</style>
+
+<script>
+function countClick(label){
+  fetch("https://DEIN-NAME.workers.dev/count",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({link:label}),keepalive:true}).catch(()=>{});
+}
+function updateProfile(){
+  const fileName=document.getElementById('profileFile').value.trim();
+  if(fileName) document.getElementById('profileImage').src=fileName;
+  else alert("Bitte gib einen Dateinamen ein!");
+}
+function copyCode(code){
+  navigator.clipboard.writeText(code);
+  alert("Rabatt-Code kopiert: "+code);
+}
+function changeBio(){
+  const newBio=prompt('Neue Bio eingeben:',document.getElementById('bio').innerText);
+  if(newBio) document.getElementById('bio').innerText=newBio;
+}
+function changeAvatar(){
+  const newUrl=prompt('URL oder Dateiname deines neuen Profilbildes:');
+  if(newUrl) document.getElementById('profileImage').src=newUrl;
+}
+</script>
 </head>
 <body>
-  <div class="container">
-    <div class="avatar" onclick="changeAvatar()">
-      <img id="profileImage" src="avatar.jpg" alt="ExiledTruthWave☦️">
-    </div>
-    <h1>ExiledTruthWave☦️</h1>
-    <p id="bio">Affiliate Links • Elegant • Minimalistisch • Trackerfrei</p>
+<div class="container">
 
-    <!-- Beispiel-Links -->
-   
-    <a class="link" href="https://www.nature-heart.de/?ref=deinAffiliateID" target="_blank">🌿 Nature Heart</a>
-    <a class="link" href="mailto: exiledtruthwave@proton.me">📩 Kontakt</a>
-
-    <footer>
-      *Die hier verlinkten Produkte sind Affiliate-Links.<br>
-      Ich nutze sie selbst seit über einem Jahr und empfehle sie aus persönlicher Erfahrung.<br>
-      Die Empfehlung dient der <strong>Gesundheitsförderung und Prävention</strong>, nicht der Behandlung oder Heilung.<br>
-      Es handelt sich nicht um eine medizinische Beratung.
-      <br>
-<span style="font-size:0.8rem;">
-Anonyme Klickzählung · keine Cookies · keine personenbezogenen Daten
-</span>
-
-    </footer>
+<header>
+  <div class="avatar" onclick="changeAvatar()">
+    <img id="profileImage" src="avatar.jpg" alt="ExiledTruthWave☦️">
   </div>
+  <div class="profile-input">
+    <input type="text" id="profileFile" placeholder="Dateiname Profilbild">
+    <button onclick="updateProfile()">Bild ändern</button>
+  </div>
+  <h1>ExiledTruthWave☦️</h1>
+  <p id="bio" ondblclick="changeBio()">Nature Heart Mini-Shop • Trackerfrei • Elegant</p>
+</header>
 
-  <script>
-    function changeBio() {
-      const newBio = prompt('Neue Bio eingeben:', document.getElementById('bio').innerText);
-      if(newBio) document.getElementById('bio').innerText = newBio;
-    }
+<!-- Nature Heart Affiliate Card -->
+<div class="affiliate-card">
+  <img src="nature-heart.jpg" alt="Nature Heart Produkt">
+  <h2>Nature Heart</h2>
+  <p>Hochwertige Produkte zur Unterstützung von Wohlbefinden und Prävention.</p>
+  <div class="coupon">
+    <strong>🎁 Rabatt-Code:</strong><br>
+    <span class="code" onclick="copyCode('EXILED10')">EXILED10</span>
+    <p class="hint">Mit Nutzung erhalte ich eine Provision.</p>
+  </div>
+  <a class="btn" href="HIER_DEIN_AFFILIATE_LINK" target="_blank" rel="noopener noreferrer" onclick="countClick('nature-heart')">👉 Jetzt ansehen</a>
+</div>
 
-    function changeAvatar() {
-      const newUrl = prompt('URL oder Dateiname deines neuen Profilbildes:');
-      if(newUrl) document.getElementById('profileImage').src = newUrl;
-    }
+<footer>
+  *Dieser Link ist ein Affiliate-Link. Ich empfehle nur Produkte, die ich selbst nutze.<br>
+  Anonyme Klickzählung · keine Cookies · keine personenbezogenen Daten
+</footer>
 
-    // Doppelklick auf Bio zum Ändern
-    document.getElementById('bio').addEventListener('dblclick', changeBio);
-  </script>
+</div>
 </body>
 </html>
 
