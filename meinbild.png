@@ -1,0 +1,4 @@
+<div class="profile-input">
+  <input type="text" id="profileFile" placeholder="IMG_20251205_104928_719.webp">
+  <button onclick="updateProfile()">Bild ändern</button>
+</div>
