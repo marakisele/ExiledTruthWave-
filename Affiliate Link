@@ -2,25 +2,107 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Weiterleitung…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affiliate-link</title>
 
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #EFD8A9;
+      color: #6A9369;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      max-width: 420px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 18px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0.5rem 0;
+      font-size: 1.6rem;
+      color: #6A9369;
+    }
+
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: block;
+      padding: 1rem;
+      background: #6A9369;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: #555;
+    }
+  </style>
+
+  <!-- Anonyme Klickzählung -->
   <script>
-    // getrenntes Tracking (ohne Cookies)
-    let key = "nh_click_instagram";
-    let clicks = localStorage.getItem(key);
-    clicks = clicks ? parseInt(clicks) + 1 : 1;
-    localStorage.setItem(key, clicks);
-
-    // DEIN Affiliate-Link
-    window.location.replace(
-      "https://nature-heart.de/reinheit"
-    );
+    function countClick(label) {
+      fetch("https://DEIN-NAME.workers.dev/count", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ link: label }),
+        keepalive: true
+      }).catch(() => {});
+    }
   </script>
 </head>
-
 <body>
-  <p>Du wirst weitergeleitet…</p>
-  <p><small>* Affiliate-Link</small></p>
+
+  <div class="card">
+    
+    <img src="nature-heart.jpg" alt="Nature Heart Produkt">
+
+    <h1>Nature Heart</h1>
+    <p>
+      Hochwertige Produkte zur Unterstützung von Wohlbefinden und Prävention.
+    </p>
+
+    
+    <a class="btn"
+       href="https://nature-heart.de/reinheit"
+       target="_blank"
+       rel="noopener noreferrer"
+       onclick="countClick('nature-heart')">
+       👉 Jetzt ansehen
+    </a>
+
+    <div class="note">
+      *Affiliate-Link · keine Cookies · anonyme Klickzählung
+    </div>
+  </div>
+
 </body>
 </html>
 
