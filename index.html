@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -8,12 +9,13 @@
 <style>
 :root {
   --bg: #f7f2e7;
-  --text: #6A9369;
+  --text: #4f6f52;
   --card-bg: rgba(255,255,255,0.95);
-  --accent: #6A9369;
-  --hover-bg: rgba(255,255,255,1);
+  --accent: #d6b98c; /* beige Hauptfarbe */
 }
 
+/* Grundlegendes */
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
@@ -22,127 +24,112 @@ body {
   display: flex;
   justify-content: center;
 }
-
 .container {
   width: 100%;
-  max-width: 520px;
+  max-width: 640px;
+  padding: 0 1rem 2rem;
   margin: 0 auto;
-  padding: 0 0.8rem 2rem;
   text-align: center;
 }
 
+/* HEADER */
 header {
   position: sticky;
   top: 0;
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  padding: 1rem 0;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  padding: 1.2rem 0 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #e0d4c3;
   z-index: 10;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
 header .avatar {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto 0.5rem;
   border-radius: 50%;
   border: 3px solid var(--accent);
   overflow: hidden;
-  transition: transform 0.3s;
 }
-
-header .avatar:hover { transform: scale(1.05); }
 header .avatar img { width: 100%; height: 100%; object-fit: cover; }
-header h1 { margin: 0.3rem 0 0; font-size: 1.6rem; color: var(--accent);}
-header #bio { font-size: 0.9rem; color: var(--text); margin: 0.2rem 0;}
+header h1 { margin: 0.3rem 0 0; font-size: 1.8rem; color: var(--accent); }
+header #bio { font-size: 0.85rem; margin: 0.2rem 0; color: #9e8566; }
 
+/* GRID FÜR PRODUKTE */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  margin-top: 1.5rem;
+}
+@media (min-width: 600px) { .products-grid { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 900px) { .products-grid { grid-template-columns: repeat(2,1fr); } }
+
+/* AFFILIATE CARD */
 .affiliate-card {
   background: var(--card-bg);
-  border-radius: 20px;
-  padding: 1rem;
-  margin: 1rem auto;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  transition: transform 0.25s, box-shadow 0.25s;
+  border-radius: 22px;
+  padding: 1.3rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  transition: transform .25s, box-shadow .25s;
 }
-
 .affiliate-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.25);
 }
-
 .affiliate-card img {
   width: 100%;
-  height: auto;
-  max-height: 260px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 14px;
-  margin-bottom: 1rem;
+  border-radius: 16px;
+  margin-bottom: 0.9rem;
 }
+.affiliate-card h2 { margin: 0.4rem 0; font-size: 1.45rem; color: var(--accent); }
+.affiliate-card p { font-size: 0.95rem; color: #666; }
 
-.affiliate-card h2 {
-  margin: 0.5rem 0;
-  font-size: 1.3rem;
-  color: var(--accent);
-}
-
-.affiliate-card p {
-  font-size: 0.9rem;
-  margin-bottom: 0.8rem;
-  color:#555;
-}
-
+/* COUPON */
 .coupon {
-  background: rgba(255,255,255,0.9);
-  border-radius: 12px;
-  padding: 0.6rem;
-  margin-bottom: 0.8rem;
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px;
+  padding: 0.7rem;
+  margin: 0.9rem 0;
 }
-
 .coupon .code {
   display: inline-block;
-  padding:0.4rem 0.8rem;
-  font-weight:bold;
-  letter-spacing:1.5px;
+  padding: 0.45rem 1rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
   background: var(--accent);
-  color:#fff;
-  border-radius:8px;
-  cursor:pointer;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
+/* BUTTON */
 .affiliate-card a.btn {
-  display:inline-block;
-  padding:0.9rem 1.2rem;
+  display: block;
+  padding: 0.95rem 1.2rem;
   background: var(--accent);
-  color:#fff;
-  text-decoration:none;
-  border-radius:14px;
-  font-size:1.05rem;
-  width:100%;
-  transition: transform 0.25s, box-shadow 0.25s;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+  transition: transform .25s, box-shadow .25s, background .25s;
 }
-
 .affiliate-card a.btn:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow:0 12px 25px rgba(0,0,0,0.25);
-  background:#557b56;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  background: #bfa177;
 }
 
+/* FOOTER */
 footer {
-  margin: 2rem 1rem;
+  margin: 2rem 1rem 0;
   font-size: 0.85rem;
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.4;
-  text-align: center;
-}
-
-/* Desktop Optimierung */
-@media (min-width: 768px) {
-  .container { max-width: 600px; }
-  header h1 { font-size: 1.9rem; }
-  .affiliate-card { margin: 1.5rem auto; }
+  line-height: 1.5;
+  color: #555;
 }
 </style>
 
@@ -176,30 +163,54 @@ function copyCode(code){
     <img src="IMG_20251205_104928_719.webp" alt="ExiledTruthWave☦️">
   </div>
   <h1>ExiledTruthWave☦️</h1>
-  <p id="bio">natureheart.de / Affiliate</p>
+  <p id="bio">natureheart.de · Affiliate Partner</p>
 </header>
 
-<div class="affiliate-card">
-  <img src="nature-heart.jpg" alt="Nature Heart Produkt">
-  <h2>Nature Heart</h2>
-  <p>Hochwertige Produkte zur Unterstützung von Wohlbefinden und Prävention.</p>
+<div class="products-grid">
 
-  <div class="coupon">
-    <strong>💌 10% Rabatt</strong><br>
-    <span class="code" onclick="copyCode('reinheit10')">reinheit10</span>
+  <!-- Produkt 1 -->
+  <div class="affiliate-card">
+    <img src="mama-liebe-bundle.jpg" alt="Mama Liebe Bundle">
+    <h2>Mama Liebe Bundle</h2>
+    <p>Für Mütter – natürliche Unterstützung und Wohlbefinden.</p>
+    <div class="coupon">
+      <strong>💌 10% Rabatt</strong><br>
+      <span class="code" onclick="copyCode('reinheit10')">reinheit10</span>
+    </div>
+    <a class="btn"
+       href="https://nature-heart.de/products/mama-liebe-bundle-by-gamze?sca_ref=10146523.6mtqYtCGv55lQ4z8"
+       target="_blank"
+       rel="noopener noreferrer"
+       onclick="countClick('mama-liebe-bundle')">
+       👉 Jetzt ansehen
+    </a>
   </div>
 
-  <a class="btn" href="https://nature-heart.de/reinheit" target="_blank" rel="noopener noreferrer"
-     onclick="countClick('nature-heart')">👉 Jetzt ansehen</a>
+  <!-- Produkt 2 -->
+  <div class="affiliate-card">
+    <img src="premium-kollagen.jpg" alt="Premium Kollagen">
+    <h2>Premium Kollagen</h2>
+    <p>Hochwertiges Kollagen für Haut, Haare & Gelenke.</p>
+    <div class="coupon">
+      <strong>💌 10% Rabatt</strong><br>
+      <span class="code" onclick="copyCode('reinheit10')">reinheit10</span>
+    </div>
+    <a class="btn"
+       href="https://nature-heart.de/products/premium-kollagen?sca_ref=10146523.6mtqYtCGv55lQ4z8"
+       target="_blank"
+       rel="noopener noreferrer"
+       onclick="countClick('premium-kollagen')">
+       👉 Jetzt ansehen
+    </a>
+  </div>
+
 </div>
 
 <footer>
-  *Die hier verlinkten Produkte sind Affiliate-Links.<br>
-  Empfehlung zur <strong>Gesundheitsförderung & Prävention</strong>, nicht zur Behandlung.<br>
+  *Affiliate-Link · Empfehlung zur <strong>Gesundheitsförderung & Prävention</strong>, nicht zur Behandlung.<br>
   Anonyme Klickzählung · keine Cookies
 </footer>
 
 </div>
 </body>
 </html>
-
