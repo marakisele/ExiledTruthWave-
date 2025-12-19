@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ExiledTruthWave☦️ </title>
+<title>ExiledTruthWave☦️</title>
 
 <style>
 :root {
@@ -16,7 +16,7 @@
 body {
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
-  background: linear-gradient(160deg, #EFD8A9, #EDAEA);
+  background: linear-gradient(160deg, #EFD8A9, #EDAEA9);
   color: var(--text);
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@ header .avatar {
   border-radius: 50%;
   border: 3px solid var(--accent);
   overflow: hidden;
-  cursor: pointer;
+  cursor: default;
   transition: transform 0.3s;
 }
 header .avatar:hover { transform: scale(1.05); }
@@ -113,22 +113,44 @@ footer { margin:2rem 1rem; font-size:0.8rem; color:var(--text); line-height:1.3;
 </style>
 
 <script>
-function countClick(label){
-  fetch("https://DEIN-NAME.workers.dev/count",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({link:label}),keepalive:true}).catch(()=>{});
-}
-function updateProfile(){
-  const fileName=document.getElementById('profileFile').value.trim();
-  if(fileName) document.getElementById('profileImage').src=fileName;
-  else alert("Bitte gib einen Dateinamen ein!");
-}
-function copyCode(code){
-  navigator.clipboard.writeText(code);
-  alert("Rabatt-Code kopiert: "+code);
-}
-function changeBio(){
-  const newBio=prompt('Neue Bio eingeben:',document.getElementById('bio').innerText);
-  if(newBio) document.getElementById('bio').innerText=newBio;
+/* Replace the worker URL below with your real worker domain (example: my-site.workers.dev) */
+const COUNT_ENDPOINT = "https://DEIN-NAME.workers.dev/count";
 
+function countClick(label){
+  // best-effort, non-blocking click counter
+  fetch(COUNT_ENDPOINT, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({link:label}),
+    keepalive: true
+  }).catch(() => {});
+}
+
+function copyCode(code){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(code).then(() => {
+      alert("Rabatt-Code kopiert: " + code);
+    }).catch(() => {
+      fallbackCopy(code);
+    });
+  } else {
+    fallbackCopy(code);
+  }
+}
+function fallbackCopy(code) {
+  const ta = document.createElement('textarea');
+  ta.value = code;
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); alert("Rabatt-Code kopiert: " + code); }
+  catch(e) { alert("Bitte kopiere den Code manuell: " + code); }
+  document.body.removeChild(ta);
+}
+
+function changeBio(){
+  const bioEl = document.getElementById('bio');
+  const newBio = prompt('Neue Bio eingeben:', bioEl.innerText);
+  if (newBio !== null) bioEl.innerText = newBio;
 }
 </script>
 </head>
@@ -136,15 +158,12 @@ function changeBio(){
 <div class="container">
 
 <header>
-  <div class="avatar" onclick="changeAvatar()">
+  <div class="avatar" aria-hidden="true">
     <img id="profileImage" src="IMG_20251205_104928_719.webp" alt="ExiledTruthWave☦️">
   </div>
-  <div class="profile-input">
-    <input type="text" id="profileFile" placeholder="IMG_20251205_104928_719.webp">
-    <button onclick="updateProfile()">Bild ändern</button>
-  </div>
+
   <h1>ExiledTruthWave☦️</h1>
-  <p id="bio" ondblclick="changeBio()">natureheart.de / Affiliate </p>
+  <p id="bio" ondblclick="changeBio()">natureheart.de / Affiliate</p>
 </header>
 
 <!-- Nature Heart Affiliate Card -->
@@ -152,18 +171,23 @@ function changeBio(){
   <img src="nature-heart.jpg" alt="Nature Heart Produkt">
   <h2>Nature Heart</h2>
   <p>Hochwertige Produkte zur Unterstützung von Wohlbefinden und Prävention.</p>
-     <di class="coupon">
-    <strongtrong>💌 10% Rabatt</strong><br>
-    <span class="code" onclick="copyCode('reinheit10')">reinheit10</span>
+  <div class="coupon">
+    <strong>💌 10% Rabatt</strong><br>
+    <span class="code" role="button" tabindex="0" onclick="copyCode('reinheit10')" onkeydown="if(event.key==='Enter'){copyCode('reinheit10')}">reinheit10</span>
     <p class="hint">.</p>
-    </div>
+  </div>
   <a class="btn" href="https://nature-heart.de/reinheit" target="_blank" rel="noopener noreferrer" onclick="countClick('nature-heart')">👉 Jetzt ansehen</a>
 </div>
 
 <footer>
- *Die hier verlinkten Produkte sind Affiliate-Links.<br>
-      Ich nutze sie selbst seit über einem Jahr und empfehle sie aus persönlicher Erfahrung.<br>
-      Die Empfehlung dient der <strong>Gesundheitsförderung und Prävention</strong>, nicht der Behandlung oder Heilung.<br>
-      <span style="font-size:0.8rem;">
-  Anonyme Klickzählung · keine Cookies · keine personenbezogenen Daten>
+  *Die hier verlinkten Produkte sind Affiliate-Links.<br>
+  Ich nutze sie selbst seit über einem Jahr und empfehle sie aus persönlicher Erfahrung.<br>
+  Die Empfehlung dient der <strong>Gesundheitsförderung und Prävention</strong>, nicht der Behandlung oder Heilung.<br>
+  <span style="font-size:0.8rem;">
+    Anonyme Klickzählung · keine Cookies · keine personenbezogenen Daten
+  </span>
+</footer>
 
+</div> <!-- .container -->
+</body>
+</html>
