@@ -13,6 +13,7 @@
   --accent: #6A9369;
   --hover-bg: rgba(255,255,255,1);
 }
+
 body {
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
@@ -20,13 +21,16 @@ body {
   color: var(--text);
   display: flex;
   justify-content: center;
-  padding: 0;
 }
+
 .container {
   width: 100%;
-  max-width: 480px;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 0.8rem 2rem;
   text-align: center;
 }
+
 header {
   position: sticky;
   top: 0;
@@ -36,6 +40,7 @@ header {
   z-index: 10;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
 header .avatar {
   width: 80px;
   height: 80px;
@@ -43,54 +48,67 @@ header .avatar {
   border-radius: 50%;
   border: 3px solid var(--accent);
   overflow: hidden;
-  cursor: default;
   transition: transform 0.3s;
 }
+
 header .avatar:hover { transform: scale(1.05); }
 header .avatar img { width: 100%; height: 100%; object-fit: cover; }
 header h1 { margin: 0.3rem 0 0; font-size: 1.6rem; color: var(--accent);}
 header #bio { font-size: 0.9rem; color: var(--text); margin: 0.2rem 0;}
 
-.profile-input {
-  margin: 0.5rem 0;
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.profile-input input {
-  padding: 0.4rem;
-  border-radius: 8px;
-  border: 1px solid var(--accent);
-  width: 60%;
-}
-.profile-input button {
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.profile-input button:hover { background: #557b56; }
-
 .affiliate-card {
   background: var(--card-bg);
   border-radius: 20px;
   padding: 1rem;
-  margin: 1rem;
+  margin: 1rem auto;
   text-align: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   transition: transform 0.25s, box-shadow 0.25s;
 }
-.affiliate-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.25);}
-.affiliate-card img { width: 100%; border-radius: 14px; margin-bottom: 1rem; }
-.affiliate-card h2 { margin: 0.5rem 0; font-size: 1.3rem; color: var(--accent);}
-.affiliate-card p { font-size: 0.9rem; margin-bottom: 0.8rem; color:#555; }
 
-.coupon { background: rgba(255,255,255,0.9); border-radius: 12px; padding: 0.6rem; margin-bottom: 0.8rem;}
-.coupon .code { display: inline-block; padding:0.4rem 0.8rem; font-weight:bold; letter-spacing:1.5px; background: var(--accent); color:#fff; border-radius:8px; cursor:pointer;}
-.coupon .hint { font-size:0.75rem; color:#555; margin-top:0.2rem; }
+.affiliate-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+.affiliate-card img {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+}
+
+.affiliate-card h2 {
+  margin: 0.5rem 0;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.affiliate-card p {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  color:#555;
+}
+
+.coupon {
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.coupon .code {
+  display: inline-block;
+  padding:0.4rem 0.8rem;
+  font-weight:bold;
+  letter-spacing:1.5px;
+  background: var(--accent);
+  color:#fff;
+  border-radius:8px;
+  cursor:pointer;
+}
 
 .affiliate-card a.btn {
   display:inline-block;
@@ -103,21 +121,35 @@ header #bio { font-size: 0.9rem; color: var(--text); margin: 0.2rem 0;}
   width:100%;
   transition: transform 0.25s, box-shadow 0.25s;
 }
+
 .affiliate-card a.btn:hover {
   transform: translateY(-3px) scale(1.03);
   box-shadow:0 12px 25px rgba(0,0,0,0.25);
   background:#557b56;
 }
 
-footer { margin:2rem 1rem; font-size:0.8rem; color:var(--text); line-height:1.3; text-align:center;}
+footer {
+  margin: 2rem 1rem;
+  font-size: 0.85rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Desktop Optimierung */
+@media (min-width: 768px) {
+  .container { max-width: 600px; }
+  header h1 { font-size: 1.9rem; }
+  .affiliate-card { margin: 1.5rem auto; }
+}
 </style>
 
 <script>
-/* Replace the worker URL below with your real worker domain (example: my-site.workers.dev) */
 const COUNT_ENDPOINT = "https://DEIN-NAME.workers.dev/count";
 
 function countClick(label){
-  // best-effort, non-blocking click counter
   fetch(COUNT_ENDPOINT, {
     method: "POST",
     headers: {"Content-Type":"application/json"},
@@ -127,67 +159,47 @@ function countClick(label){
 }
 
 function copyCode(code){
-  if (navigator.clipboard && navigator.clipboard.writeText) {
+  if (navigator.clipboard) {
     navigator.clipboard.writeText(code).then(() => {
       alert("Rabatt-Code kopiert: " + code);
-    }).catch(() => {
-      fallbackCopy(code);
     });
-  } else {
-    fallbackCopy(code);
   }
-}
-function fallbackCopy(code) {
-  const ta = document.createElement('textarea');
-  ta.value = code;
-  document.body.appendChild(ta);
-  ta.select();
-  try { document.execCommand('copy'); alert("Rabatt-Code kopiert: " + code); }
-  catch(e) { alert("Bitte kopiere den Code manuell: " + code); }
-  document.body.removeChild(ta);
-}
-
-function changeBio(){
-  const bioEl = document.getElementById('bio');
-  const newBio = prompt('Neue Bio eingeben:', bioEl.innerText);
-  if (newBio !== null) bioEl.innerText = newBio;
 }
 </script>
 </head>
+
 <body>
 <div class="container">
 
 <header>
-  <div class="avatar" aria-hidden="true">
-    <img id="profileImage" src="IMG_20251205_104928_719.webp" alt="ExiledTruthWave☦️">
+  <div class="avatar">
+    <img src="IMG_20251205_104928_719.webp" alt="ExiledTruthWave☦️">
   </div>
-
   <h1>ExiledTruthWave☦️</h1>
-  <p id="bio" ondblclick="changeBio()">natureheart.de / Affiliate</p>
+  <p id="bio">natureheart.de / Affiliate</p>
 </header>
 
-<!-- Nature Heart Affiliate Card -->
 <div class="affiliate-card">
   <img src="nature-heart.jpg" alt="Nature Heart Produkt">
   <h2>Nature Heart</h2>
   <p>Hochwertige Produkte zur Unterstützung von Wohlbefinden und Prävention.</p>
+
   <div class="coupon">
     <strong>💌 10% Rabatt</strong><br>
-    <span class="code" role="button" tabindex="0" onclick="copyCode('reinheit10')" onkeydown="if(event.key==='Enter'){copyCode('reinheit10')}">reinheit10</span>
-    <p class="hint">.</p>
+    <span class="code" onclick="copyCode('reinheit10')">reinheit10</span>
   </div>
-  <a class="btn" href="https://nature-heart.de/reinheit" target="_blank" rel="noopener noreferrer" onclick="countClick('nature-heart')">👉 Jetzt ansehen</a>
+
+  <a class="btn" href="https://nature-heart.de/reinheit" target="_blank" rel="noopener noreferrer"
+     onclick="countClick('nature-heart')">👉 Jetzt ansehen</a>
 </div>
 
 <footer>
   *Die hier verlinkten Produkte sind Affiliate-Links.<br>
-  Ich nutze sie selbst seit über einem Jahr und empfehle sie aus persönlicher Erfahrung.<br>
-  Die Empfehlung dient der <strong>Gesundheitsförderung und Prävention</strong>, nicht der Behandlung oder Heilung.<br>
-  <span style="font-size:0.8rem;">
-    Anonyme Klickzählung · keine Cookies · keine personenbezogenen Daten
-  </span>
+  Empfehlung zur <strong>Gesundheitsförderung & Prävention</strong>, nicht zur Behandlung.<br>
+  Anonyme Klickzählung · keine Cookies
 </footer>
 
-</div> <!-- .container -->
+</div>
 </body>
 </html>
+
