@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExiledTruthWave☦️</title>
+
+<style>
+:root {
+  --accent: #d6b98c;
+  --gold1: #fff6df;
+  --gold2: #e8c27a;
+  --gold3: #c9a14a;
+  --text: #4f6f52;
+  --card-bg: rgba(255,255,255,0.95);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  background: linear-gradient(160deg, #EFD8A9, #EDAEA9);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 640px;
+  padding: 0 1rem 2rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* HEADER */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(10px);
+  padding: 1.2rem 0 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #e0d4c3;
+  z-index: 10;
+}
+header .avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 0.5rem;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  overflow: hidden;
+}
+header .avatar img { width: 100%; height: 100%; object-fit: cover; }
+header h1 { margin: 0.3rem 0 0; font-size: 1.8rem; color: var(--accent); }
+header #bio { font-size: 0.85rem; margin: 0.2rem 0; color: #9e8566; }
+
+/* GRID */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  margin-top: 1.5rem;
+}
+
+/* 🌫️ CARD – Fade In */
+.affiliate-card {
+  background: var(--card-bg);
+  border-radius: 22px;
+  padding: 1.3rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+.affiliate-card:nth-child(1){ animation-delay: .1s; }
+.affiliate-card:nth-child(2){ animation-delay: .3s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.affiliate-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 0.9rem;
+}
+.affiliate-card h2 {
+  margin: 0.4rem 0;
+  font-size: 1.45rem;
+  color: var(--accent);
+}
+.affiliate-card p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* 🌟 EMPFOHLENER COUPON – Glow + Start-Flash */
+.coupon.recommended {
+  position: relative;
+  background: linear-gradient(135deg, var(--gold1), var(--gold2), var(--gold3));
+  border-radius: 16px;
+  padding: 1rem 0.8rem;
+  margin: 1rem 0;
+  box-shadow:
+    0 0 10px rgba(232,194,122,0.6),
+    0 0 20px rgba(232,194,122,0.4),
+    inset 0 0 6px rgba(255,255,255,0.6);
+  animation: glowPulse 2.5s ease-in-out infinite alternate,
+             glowStart 1.2s ease-out;
+}
+
+@keyframes glowPulse {
+  from {
+    box-shadow:
+      0 0 10px rgba(232,194,122,0.6),
+      0 0 20px rgba(232,194,122,0.4),
+      inset 0 0 6px rgba(255,255,255,0.6);
+  }
+  to {
+    box-shadow:
+      0 0 22px rgba(255,220,150,1),
+      0 0 45px rgba(255,220,150,0.9),
+      inset 0 0 10px rgba(255,255,255,1);
+  }
+}
+
+@keyframes glowStart {
+  from {
+    transform: scale(0.95);
+    box-shadow:
+      0 0 0 rgba(255,220,150,0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.coupon.recommended .badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffd77a, #c99a2c);
+  color: #5a3c00;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+.coupon.recommended strong {
+  display: block;
+  color: #5a3c00;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.coupon.recommended .code {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  background: rgba(255,255,255,0.95);
+  color: #9b6a12;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* BUTTON */
+.affiliate-card a.btn {
+  display: block;
+  padding: 0.95rem 1.2rem;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  margin-top: 0.6rem;
+}
+
+/* FOOTER */
+footer {
+  margin: 2rem 1rem 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #555;
+}
+</style>
+
+<script>
+const COUNT_ENDPOINT = "https://DEIN-NAME.workers.dev/count";
+
+function countClick(label){
+  fetch(COUNT_ENDPOINT, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({link:label}),
+    keepalive: true
+  }).catch(() => {});
+}
+
+function copyCode(code){
+  navigator.clipboard.writeText(code).then(() => {
+    alert("Rabatt-Code kopiert: " + code);
+  });
+}
+
+/* ⭐ DEINE TOP 2 */
+const products = [
+  {
+    name: "Mama Liebe Bundle",
+    img: "mama-liebe-bundle.jpg",
+    link: "https://nature-heart.de/products/mama-liebe-bundle-by-gamze?sca_ref=10146523.6mtqYtCGv55lQ4z8",
+    bio: "Natürliche Unterstützung für Mamas – liebevoll zusammengestellt & hochwertig.",
+    couponText: "Von mir getestet – mein Favorit für Mamas"
+  },
+  {
+    name: "Premium Kollagen",
+    img: "premium-kollagen.jpg",
+    link: "https://nature-heart.de/products/premium-kollagen?sca_ref=10146523.6mtqYtCGv55lQ4z8",
+    bio: "Hochreines Kollagen für Haut, Haare & Bindegewebe.",
+    couponText: "Meine tägliche Routine – sichtbare Ergebnisse"
+  }
+];
+
+window.addEventListener('DOMContentLoaded', () => {
+  const grid = document.querySelector('.products-grid');
+
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'affiliate-card';
+
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <h2>${p.name}</h2>
+      <p>${p.bio}</p>
+
+      <div class="coupon recommended">
+        <div class="badge">⭐ EMPFOHLEN</div>
+        <strong>${p.couponText}</strong>
+        <span class="code" onclick="copyCode('reinheit10')">reinheit10</span>
+      </div>
+
+      <a class="btn" href="${p.link}" target="_blank" rel="noopener noreferrer"
+         onclick="countClick('${p.name}')">
+        👉 Jetzt ansehen
+      </a>
+    `;
+
+    grid.appendChild(card);
+  });
+});
+</script>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <div class="avatar">
+    <img src="IMG_20251205_104928_719.webp" alt="ExiledTruthWave☦️">
+  </div>
+  <h1>ExiledTruthWave☦️</h1>
+  <p id="bio">natureheart.de · Affiliate Partner</p>
+</header>
+
+<div class="products-grid"></div>
+
+<footer>
+  *Affiliate-Link · Empfehlung zur <strong>Gesundheitsförderung & Prävention</strong>, nicht zur Behandlung.<br>
+  Anonyme Klickzählung · keine Cookies
+</footer>
+
+</div>
+</body>
+</html>
