@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ExiledTruthWave☦️</title>
 
-</style>
+<style>
 :root {
   --bg: #f7f2e7;
   --text: #3f5f4a;
   --card-bg: rgba(255,255,255,0.97);
   --accent: #c7a36a;
   --accent-soft: #e8d8b5;
+  --highlight: #f7e6c5;
 }
 
 * {
@@ -27,7 +28,6 @@ body {
   justify-content: center;
 }
 
-/* CONTAINER */
 .container {
   width: 100%;
   max-width: 1100px;
@@ -36,7 +36,6 @@ body {
   text-align: center;
 }
 
-/* HEADER */
 header {
   position: sticky;
   top: 0;
@@ -57,6 +56,12 @@ header .avatar {
   overflow: hidden;
 }
 
+header .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 header h1 {
   margin: 0.3rem 0 0;
   font-size: 1.9rem;
@@ -64,12 +69,11 @@ header h1 {
 }
 
 header #bio {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   margin: 0.2rem 0;
   color: #8f7a5a;
 }
 
-/* GRID – gleichmäßig auf allen Screens */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -78,7 +82,6 @@ header #bio {
   align-items: stretch;
 }
 
-/* CARD */
 .affiliate-card {
   background: var(--card-bg);
   border-radius: 22px;
@@ -88,6 +91,7 @@ header #bio {
   flex-direction: column;
   justify-content: space-between;
   transition: transform .25s ease, box-shadow .25s ease;
+  position: relative;
 }
 
 .affiliate-card:hover {
@@ -103,6 +107,16 @@ header #bio {
   margin-bottom: 0.9rem;
 }
 
+.affiliate-card.no-img::before {
+  content: " ";
+  display: block;
+  width: 60px;
+  height: 6px;
+  background: var(--highlight);
+  border-radius: 3px;
+  margin: 0 auto 0.8rem;
+}
+
 .affiliate-card h2 {
   margin: 0.4rem 0;
   font-size: 1.35rem;
@@ -113,9 +127,9 @@ header #bio {
   font-size: 0.95rem;
   color: #666;
   flex-grow: 1;
+  margin-bottom: 0.6rem;
 }
 
-/* COUPON */
 .coupon {
   background: var(--accent-soft);
   border-radius: 14px;
@@ -145,7 +159,6 @@ header #bio {
   transform: scale(1.05);
 }
 
-/* BUTTON */
 .affiliate-card a.btn {
   display: block;
   padding: 0.9rem 1.2rem;
@@ -164,98 +177,109 @@ header #bio {
   filter: brightness(1.05);
 }
 
-/* FOOTER */
+/* Stilistisch eleganter Footer */
 footer {
   margin: 2.5rem 1rem 0;
   font-size: 0.85rem;
-  line-height: 1.6;
+  line-height: 1.5;
   color: #555;
+  text-align: center;
+}
+
+footer span {
+  display: inline-block;
+  margin: 0 0.4rem;
 }
 </style>
 
-<script>
-const COUNT_ENDPOINT = "https://DEIN-NAME.workers.dev/count";
-
-function countClick(label){
-  fetch(COUNT_ENDPOINT, {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({link:label}),
-    keepalive: true
-  }).catch(() => {});
-}
-
-function copyCode(code){
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(code).then(() => {
-      alert("Rabatt-Code kopiert: " + code);
-    });
-  }
-}
-
-/* Dynamische Produktkarten */
-const products = [
-  {
-    name: "Mama Liebe Bundle",
-    img: "mama-liebe-bundle.jpg",
-    link: "https://nature-heart.de/products/mama-liebe-bundle-by-gamze?sca_ref=10146523.6mtqYtCGv55lQ4z8"
-  },
-  {
-    name: "Premium Kollagen",
-    img: "premium-kollagen.jpg",
-    link: "https://nature-heart.de/products/premium-kollagen?sca_ref=10146523.6mtqYtCGv55lQ4z8"
-  },
-  {
-    name: "Produkt 3 Name",
-    img: "produkt3.jpg",
-    link: "DEIN_LINK_ZUM_3_PRODUKT"
-  }
-];
-
-window.addEventListener('DOMContentLoaded', () => {
-  const grid = document.querySelector('.products-grid');
-  products.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'affiliate-card';
-    card.innerHTML = `
-      <img src="${p.img}" alt="${p.name}">
-      <h2>${p.name}</h2>
-      <p>Hoch qualitative, gewährleistete Produkte ohne Zusatzstoffe, laborgeprüft und Spitzenqualität.</p>
-      <div class="coupon">
-        <strong>💌 10% Rabatt</strong><br>
-        <span class="code" onclick="copyCode('reinheit10')">reinheit10</span>
-      </div>
-      <a class="btn" href="${p.link}" target="_blank" rel="noopener noreferrer" onclick="countClick('${p.name}')">
-        👉 Jetzt ansehen
-      </a>
-    `;
-    grid.appendChild(card);
-  });
-});
-</script>
 </head>
 
 <body>
 <div class="container">
 
 <header>
-  <div class="avatar">
-    <img src="IMG_20251205_104928_719.webp" alt="ExiledTruthWave☦️">
-  </div>
-  <h1>ExiledTruthWave☦️</h1>
-  <p id="bio">natureheart.de · Affiliate Partner</p>
+  <div class="avatar">
+    <img src="IMG_20251205_104928_719.webp" alt="ExiledTruthWave☦️">
+  </div>
+  <h1>ExiledTruthWave☦️</h1>
+  <p id="bio">Von Mama zu Mama mit Herz 🌸 Folgenden Produkten nutze ich selber seit einem Jahr und deswegen empfehle ich Sie 👇🏼</p>
 </header>
 
 <div class="products-grid">
-  <!-- Dynamische Produkte werden hier erzeugt -->
+  <!-- Dynamische Produkte werden hier erzeugt -->
 </div>
 
 <footer>
-  *Affiliate-Link · Empfehlung zur <strong>Gesundheitsförderung & Prävention</strong>, keine medizinische Behandlung .<br>
-  Anonyme Klickzählung · keine Cookies
+  <span>💌 Affiliate-Link – persönliche Empfehlung</span> | 
+  <span>⚠️ Keine medizinische Beratung</span> | 
+  <span>💰 Ich erhalte ggf. Provision, Preis bleibt unverändert</span> | 
+  <span>🔗 Haftung für externe Inhalte ausgeschlossen</span>
 </footer>
 
 </div>
+
+<script>
+const COUNT_ENDPOINT = "https://DEIN-NAME.workers.dev/count";
+function countClick(label){
+  fetch(COUNT_ENDPOINT, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({link:label}),
+    keepalive: true
+  }).catch(() => {});
+}
+
+function copyCode(code){
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(code).then(() => {
+      alert("Rabatt-Code kopiert: " + code);
+    });
+  }
+}
+
+const products = [
+  {
+    name: "Mama Liebe Bundle",
+    img: "",
+    link: "https://nature-heart.de/products/mama-liebe-bundle-by-gamze?sca_ref=10146523.6mtqYtCGv55lQ4z8",
+    text: "natürliche Unterstützung für mentale & körperliche Klarheit 🌸💧💪🏽."
+  },
+  {
+    name: "Premium Kollagen",
+    img: "premium-kollagen.jpg",
+    link: "https://nature-heart.de/products/premium-kollagen?sca_ref=10146523.6mtqYtCGv55lQ4z8",
+    text: "Botox der Natur – Mama-safe ✨🌿🤱🏻 ."
+  },
+  {
+    name: "",
+    img: "produkt3.jpg",
+    link: "",
+    text: ""
+  }
+];
+
+window.addEventListener('DOMContentLoaded', () => {
+  const grid = document.querySelector('.products-grid');
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'affiliate-card';
+    if(!p.img) card.classList.add('no-img');
+    card.innerHTML = `
+      ${p.img ? `<img src="${p.img}" alt="${p.name}">` : ''}
+      <h2>${p.name}</h2>
+      <p>${p.text}</p>
+      <div class="coupon">
+        <strong>💌 10% Rabatt</strong><br>
+        <span class="code" onclick="copyCode('reinheit10')">reinheit10</span>
+      </div>
+      <a class="btn" href="${p.link}" target="_blank" rel="noopener noreferrer" onclick="countClick('${p.name}')">
+        👉 Jetzt ansehen
+      </a>
+    `;
+    grid.appendChild(card);
+  });
+});
+</script>
 </body>
 </html>
 
