@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -16,9 +15,7 @@
   --highlight: #f7e6c5;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -178,7 +175,6 @@ header #bio {
   filter: brightness(1.05);
 }
 
-/* Stilistisch eleganter Footer */
 footer {
   margin: 2.5rem 1rem 0;
   font-size: 0.85rem;
@@ -191,10 +187,21 @@ footer span {
   display: inline-block;
   margin: 0 0.4rem;
 }
+
+/* Banner über Footer */
+.footer-banner {
+  margin: 2rem 0;
+  max-width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.footer-banner img {
+  width: 100%;
+  display: block;
+}
 </style>
 
 </head>
-
 <body>
 <div class="container">
 
@@ -208,6 +215,11 @@ footer span {
 
 <div class="products-grid">
   <!-- Dynamische Produkte werden hier erzeugt -->
+</div>
+
+<!-- Optionaler Banner -->
+<div class="footer-banner">
+  <img src="banner.jpg" alt="Banner Werbung">
 </div>
 
 <footer>
@@ -246,13 +258,13 @@ const products = [
     text: "natürliche Unterstützung für mentale & körperliche Klarheit 🌸💧💪🏽."
   },
   {
-    name: "Premium Kollagen"
+    name: "Premium Kollagen",
     img: "produkt2.jpg",
     link: "https://nature-heart.de/products/premium-kollagen?sca_ref=10146523.6mtqYtCGv55lQ4z8",
-    text: "Botox der Natur – Mama-safe ✨🌿🤱🏻 ."
+    text: "Botox der Natur – Mama-safe ✨🌿🤱🏻."
   },
   {
-    name: Bestseller-Bundle endlich zurück⚡ ,
+    name: "Bestseller-Bundle endlich zurück⚡",
     img: "produkt3.jpg",
     link: "https://nature-heart.de/products/bestseller-bundle?sca_ref=10146523.6mtqYtCGv55lQ4z8",
     text: "Perfekt für alle die ihre natürliche Hausapotheke auffüllen wollen 💊🌿 (30% Ersparnis🫰🏼)"
